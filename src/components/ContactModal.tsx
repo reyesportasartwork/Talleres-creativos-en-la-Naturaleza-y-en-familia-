@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { X, Send, CheckCircle2, TreePine } from 'lucide-react';
 import { ContactFormData } from '../types';
+import { useLanguage } from '../context/LanguageContext';
+import { TRANSLATIONS } from '../data/translations';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -8,6 +10,9 @@ interface ContactModalProps {
 }
 
 export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
+  const { language } = useLanguage();
+  const t = TRANSLATIONS.contactModal;
+
   const [formData, setFormData] = useState<ContactFormData>({
     parentName: '',
     parentEmail: '',
@@ -55,7 +60,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
           id="close-contact-modal"
           onClick={onClose}
           className="absolute top-6 right-6 p-2 rounded-full bg-white border border-[#E5E2DC] text-[#1D1B1B] hover:text-[#E86A33] transition-colors cursor-pointer"
-          aria-label="Cerrar modal"
+          aria-label={language === 'es' ? 'Cerrar modal' : 'Close modal'}
         >
           <X className="w-5 h-5" />
         </button>
@@ -69,26 +74,50 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
 
             <div className="mb-2">
               <span className="pill text-xs py-1 px-3">
-                ¡Mensaje Recibido!
+                {language === 'es' ? '¡Mensaje Recibido!' : 'Message Received!'}
               </span>
             </div>
 
             <h3 className="font-gaegu text-4xl font-bold text-[#1D1B1B] mb-2">
-              ¡Muchas gracias, {formData.parentName || 'familia'}!
+              {language === 'es'
+                ? `¡Muchas gracias, ${formData.parentName || 'familia'}!`
+                : `Thank you so much, ${formData.parentName || 'family'}!`}
             </h3>
 
             <p className="font-sans text-base sm:text-lg text-[#555] leading-relaxed max-w-md mx-auto mb-6">
-              He recibido tus notas con mucho cariño. Reyes Portas te responderá personalmente a <strong className="text-[#1D1B1B] underline">{formData.parentEmail || 'tu email'}</strong> para conocer más sobre tu hijo/a y valorar juntos una propuesta a su medida.
+              {language === 'es' ? (
+                <>
+                  He recibido tus notas con mucho cariño. Reyes Portas te responderá personalmente a{' '}
+                  <strong className="text-[#1D1B1B] underline">{formData.parentEmail || 'tu email'}</strong> para conocer más sobre tu hijo/a y valorar juntos una propuesta a su medida.
+                </>
+              ) : (
+                <>
+                  We received your note with warmth. Reyes Portas will personally write back to{' '}
+                  <strong className="text-[#1D1B1B] underline">{formData.parentEmail || 'your email'}</strong> to learn more about your child and suggest a tailored roadmap.
+                </>
+              )}
             </p>
 
             <div className="p-5 rounded-[24px] bg-white border border-[#E5E2DC] text-left text-xs font-sans text-[#555] max-w-md mx-auto mb-8">
               <span className="font-bold text-[#E86A33] block mb-1 uppercase tracking-wider">
-                ¿Qué pasará ahora?
+                {language === 'es' ? '¿Qué pasará ahora?' : 'What happens next?'}
               </span>
               <ul className="space-y-1.5 text-xs text-[#666]">
-                <li>1. Reyes lee con atención los intereses de tu hijo/a.</li>
-                <li>2. Recibirás respuesta directa en 24-48 horas.</li>
-                <li>3. Sin presión: solo escucha y orientación pedagógica honesta.</li>
+                <li>
+                  {language === 'es'
+                    ? '1. Reyes lee con atención los intereses de tu hijo/a.'
+                    : '1. Reyes attentively reviews your child’s creative passions.'}
+                </li>
+                <li>
+                  {language === 'es'
+                    ? '2. Recibirás respuesta directa en 24-48 horas.'
+                    : '2. You will receive a direct reply within 24-48 hours.'}
+                </li>
+                <li>
+                  {language === 'es'
+                    ? '3. Sin presión: solo escucha y orientación pedagógica honesta.'
+                    : '3. No sales pressure: just attentive pedagogical guidance.'}
+                </li>
               </ul>
             </div>
 
@@ -97,7 +126,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
               onClick={handleReset}
               className="btn-accent text-xl py-3 px-8 rounded-full"
             >
-              Volver a la página
+              {language === 'es' ? 'Volver a la página' : 'Back to website'}
             </button>
           </div>
         ) : (
@@ -109,16 +138,16 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                 <TreePine className="w-4 h-4 text-white" />
               </div>
               <span className="pill text-xs py-0.5 px-2.5">
-                Contacto Directo con Reyes
+                {t.badge[language]}
               </span>
             </div>
 
             <h3 className="font-gaegu text-4xl font-bold text-[#1D1B1B] leading-none mb-2">
-              Cuéntame sobre tu hijo/a
+              {t.title[language]}
             </h3>
 
             <p className="font-sans text-sm sm:text-base text-[#555] leading-relaxed mb-6">
-              Un primer contacto sin compromiso para explorar cómo conectar a tu hijo/a con el español a través del arte y las historias.
+              {t.subtitle[language]}
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -127,28 +156,28 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block font-sans text-xs font-bold text-[#1D1B1B] mb-1 uppercase tracking-wider">
-                    Tu nombre *
+                    {t.nameLabel[language]} *
                   </label>
                   <input
                     type="text"
                     required
                     value={formData.parentName}
                     onChange={(e) => setFormData({ ...formData, parentName: e.target.value })}
-                    placeholder="Ej. Carmen Álvarez"
+                    placeholder={language === 'es' ? 'Ej. Carmen Álvarez' : 'e.g. Sarah Miller'}
                     className="w-full px-4 py-2.5 rounded-full bg-white border border-[#E5E2DC] text-base text-[#1D1B1B] placeholder:text-[#888] focus:outline-hidden focus:border-[#E86A33]"
                   />
                 </div>
 
                 <div>
                   <label className="block font-sans text-xs font-bold text-[#1D1B1B] mb-1 uppercase tracking-wider">
-                    Tu correo electrónico *
+                    {t.emailLabel[language]} *
                   </label>
                   <input
                     type="email"
                     required
                     value={formData.parentEmail}
                     onChange={(e) => setFormData({ ...formData, parentEmail: e.target.value })}
-                    placeholder="ejemplo@correo.com"
+                    placeholder={language === 'es' ? 'ejemplo@correo.com' : 'example@email.com'}
                     className="w-full px-4 py-2.5 rounded-full bg-white border border-[#E5E2DC] text-base text-[#1D1B1B] placeholder:text-[#888] focus:outline-hidden focus:border-[#E86A33]"
                   />
                 </div>
@@ -158,34 +187,42 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block font-sans text-xs font-bold text-[#1D1B1B] mb-1 uppercase tracking-wider">
-                    Edad de tu hijo/a
+                    {t.ageLabel[language]}
                   </label>
                   <select
                     value={formData.childAge}
                     onChange={(e) => setFormData({ ...formData, childAge: e.target.value })}
                     className="w-full px-4 py-2.5 rounded-full bg-white border border-[#E5E2DC] text-base text-[#1D1B1B] focus:outline-hidden focus:border-[#E86A33] cursor-pointer"
                   >
-                    <option value="6">6 años</option>
-                    <option value="7-8">7 - 8 años</option>
-                    <option value="9-10">9 - 10 años</option>
-                    <option value="11-12">11 - 12 años</option>
-                    <option value="otra">Otra edad</option>
+                    <option value="6">{language === 'es' ? '6 años' : '6 years old'}</option>
+                    <option value="7-8">{language === 'es' ? '7 - 8 años' : '7 - 8 years old'}</option>
+                    <option value="9-10">{language === 'es' ? '9 - 10 años' : '9 - 10 years old'}</option>
+                    <option value="11-12">{language === 'es' ? '11 - 12 años' : '11 - 12 years old'}</option>
+                    <option value="otra">{language === 'es' ? 'Otra edad' : 'Other age'}</option>
                   </select>
                 </div>
 
                 <div>
                   <label className="block font-sans text-xs font-bold text-[#1D1B1B] mb-1 uppercase tracking-wider">
-                    Situación familiar
+                    {t.contextLabel[language]}
                   </label>
                   <select
                     value={formData.familyContext}
                     onChange={(e) => setFormData({ ...formData, familyContext: e.target.value as any })}
                     className="w-full px-4 py-2.5 rounded-full bg-white border border-[#E5E2DC] text-base text-[#1D1B1B] focus:outline-hidden focus:border-[#E86A33] cursor-pointer"
                   >
-                    <option value="homeschool">Familia Homeschool / Educar en casa</option>
-                    <option value="bilingual">Hogar bilingüe en el extranjero</option>
-                    <option value="support">Refuerzo creativo extracurricular</option>
-                    <option value="other">Otro contexto</option>
+                    <option value="homeschool">
+                      {language === 'es' ? 'Familia Homeschool / Educar en casa' : 'Homeschool Family'}
+                    </option>
+                    <option value="bilingual">
+                      {language === 'es' ? 'Hogar bilingüe en el extranjero' : 'Bilingual home abroad'}
+                    </option>
+                    <option value="support">
+                      {language === 'es' ? 'Refuerzo creativo extracurricular' : 'Creative after-school enrichment'}
+                    </option>
+                    <option value="other">
+                      {language === 'es' ? 'Otro contexto' : 'Other context'}
+                    </option>
                   </select>
                 </div>
               </div>
@@ -193,13 +230,13 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
               {/* Child Passions */}
               <div>
                 <label className="block font-sans text-xs font-bold text-[#1D1B1B] mb-1 uppercase tracking-wider">
-                  ¿Qué temas le apasionan a tu hijo/a? (El "gancho" creativo)
+                  {t.passionsLabel[language]}
                 </label>
                 <input
                   type="text"
                   value={formData.childPassions}
                   onChange={(e) => setFormData({ ...formData, childPassions: e.target.value })}
-                  placeholder="Ej. Cómics, dinosaurios, inventos, animales del bosque, dibujar manga..."
+                  placeholder={language === 'es' ? 'Ej. Cómics, dinosaurios, inventos, animales del bosque, dibujar manga...' : 'e.g. Comic books, dinosaurs, inventions, forest animals, sketching manga...'}
                   className="w-full px-4 py-2.5 rounded-full bg-white border border-[#E5E2DC] text-base text-[#1D1B1B] placeholder:text-[#888] focus:outline-hidden focus:border-[#E86A33]"
                 />
               </div>
@@ -207,13 +244,13 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
               {/* Message */}
               <div>
                 <label className="block font-sans text-xs font-bold text-[#1D1B1B] mb-1 uppercase tracking-wider">
-                  ¿Alguna pregunta o mensaje para Reyes?
+                  {t.messageLabel[language]}
                 </label>
                 <textarea
                   rows={2}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="Cuéntame qué buscas para el aprendizaje de tu hijo/a..."
+                  placeholder={language === 'es' ? 'Cuéntame qué buscas para el aprendizaje de tu hijo/a...' : 'Share what you hope for your child’s learning journey...'}
                   className="w-full px-4 py-2.5 rounded-[20px] bg-white border border-[#E5E2DC] text-base text-[#1D1B1B] placeholder:text-[#888] focus:outline-hidden focus:border-[#E86A33]"
                 />
               </div>
@@ -226,16 +263,16 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                   className="btn-accent w-full text-2xl py-3 px-6 rounded-full"
                 >
                   {submitting ? (
-                    <span>Enviando mensaje...</span>
+                    <span>{language === 'es' ? 'Enviando mensaje...' : 'Sending message...'}</span>
                   ) : (
                     <>
-                      <span>Enviar y conocer Creative Spanish</span>
+                      <span>{t.submitBtn[language]}</span>
                       <Send className="w-5 h-5 ml-1" />
                     </>
                   )}
                 </button>
                 <p className="font-sans text-[11px] text-[#777] text-center mt-2">
-                  ✦ Respetamos tu privacidad. Reyes responderá personalmente.
+                  {language === 'es' ? '✦ Respetamos tu privacidad. Reyes responderá personalmente.' : '✦ We respect your family’s privacy. Reyes will reply directly.'}
                 </p>
               </div>
 

@@ -1,7 +1,12 @@
 import React from 'react';
 import { CheckCircle2, XCircle } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { TRANSLATIONS } from '../data/translations';
 
 export const ProblemSection: React.FC = () => {
+  const { language } = useLanguage();
+  const t = TRANSLATIONS.problem;
+
   return (
     <section
       id="el-problema"
@@ -12,7 +17,7 @@ export const ProblemSection: React.FC = () => {
         {/* Section Pill */}
         <div className="text-center mb-4">
           <span className="pill shadow-xs">
-            La realidad de muchas familias
+            {t.badge[language]}
           </span>
         </div>
 
@@ -21,16 +26,12 @@ export const ProblemSection: React.FC = () => {
           id="problem-heading"
           className="text-3xl sm:text-4xl md:text-5xl font-gaegu text-[#1D1B1B] text-center max-w-3xl mx-auto leading-tight mb-4 font-bold"
         >
-          ¿Tu hijo está aprendiendo español pero necesitas una forma más creativa de mantenerlo conectado con el idioma?
+          {t.title[language]}
         </h2>
 
         {/* Empathetic explanation in Plus Jakarta Sans */}
         <p className="text-base sm:text-lg text-[#555555] text-center max-w-2xl mx-auto leading-relaxed mb-12 font-sans">
-          Muchas familias homeschool y hogares bilingües comparten la misma inquietud:{' '}
-          <strong className="text-[#1D1B1B] font-semibold">
-            el niño necesita practicar español, pero las clases tradicionales con fichas mecánicas y memorización no despiertan su asombro.
-          </strong>{' '}
-          Cuando el aprendizaje se vuelve rígido o descontextualizado, el idioma se percibe como una tarea en lugar de una herramienta viva para imaginar.
+          {t.description[language]}
         </p>
 
         {/* Comparison card grid in Variation 4 Style */}
@@ -47,22 +48,16 @@ export const ProblemSection: React.FC = () => {
                   <XCircle className="w-5 h-5 text-red-600" />
                 </div>
                 <h3 className="font-gaegu text-2xl sm:text-3xl font-bold text-[#1D1B1B]">
-                  El enfoque convencional
+                  {t.conventionalTitle[language]}
                 </h3>
               </div>
               <ul className="space-y-3 font-sans text-sm sm:text-base text-[#666666] leading-relaxed">
-                <li className="flex items-start gap-2.5">
-                  <span className="text-red-500 font-bold select-none">•</span>
-                  <span>Listas descontextualizadas de vocabulario y fichas repetitivas.</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <span className="text-red-500 font-bold select-none">•</span>
-                  <span>Temarios cerrados donde el niño no puede aportar sus universos de interés.</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <span className="text-red-500 font-bold select-none">•</span>
-                  <span>Foco en la corrección gramatical inmediata que frena la espontaneidad oral.</span>
-                </li>
+                {t.conventionalItems[language].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2.5">
+                    <span className="text-red-500 font-bold select-none">•</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -78,22 +73,16 @@ export const ProblemSection: React.FC = () => {
                   <CheckCircle2 className="w-5 h-5 text-[#E86A33]" />
                 </div>
                 <h3 className="font-gaegu text-2xl sm:text-3xl font-bold text-[#1D1B1B]">
-                  Creative Spanish con Reyes
+                  {t.creativeTitle[language]}
                 </h3>
               </div>
               <ul className="space-y-3 font-sans text-sm sm:text-base text-[#333333] leading-relaxed">
-                <li className="flex items-start gap-2.5">
-                  <span className="text-[#E86A33] font-bold select-none">✓</span>
-                  <span>El español es el medio para dibujar, inventar historias y experimentar.</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <span className="text-[#E86A33] font-bold select-none">✓</span>
-                  <span>Partimos de las pasiones del niño (dinosaurios, cómics, botánica, inventos).</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <span className="text-[#E86A33] font-bold select-none">✓</span>
-                  <span>Acompañamiento respetuoso donde el error es un detonante creativo.</span>
-                </li>
+                {t.creativeItems[language].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2.5">
+                    <span className="text-[#E86A33] font-bold select-none">✓</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

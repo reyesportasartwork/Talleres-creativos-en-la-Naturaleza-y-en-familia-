@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
-import { TreePine, Heart, Mail, CheckCircle2, Sparkles, Send } from 'lucide-react';
+import { Mail, CheckCircle2, Send } from 'lucide-react';
 import { BRAND_INFO } from '../data/content';
+import { useLanguage } from '../context/LanguageContext';
+import { TRANSLATIONS } from '../data/translations';
+import creativeForestLogo from '../assets/images/creative_forest_logo.jpeg';
 
 interface FooterProps {
   onOpenContact: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
+  const { language } = useLanguage();
+  const t = TRANSLATIONS.footer;
   const [email, setEmail] = useState('');
   const [parentName, setParentName] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -42,33 +47,33 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
             <div className="lg:col-span-7">
               <div className="flex items-center gap-2 mb-3">
                 <span className="pill text-xs py-1 px-3">
-                  Para Madres y Padres Creativos
+                  {t.newsletterBadge[language]}
                 </span>
                 <span className="font-sans text-xs text-[#666]">
-                  Boletín gratuito de The Creative Forest
+                  {language === 'es' ? 'Boletín gratuito de The Creative Forest' : 'Free newsletter by The Creative Forest'}
                 </span>
               </div>
 
               <h3 className="font-gaegu text-3xl sm:text-4xl font-bold text-[#1D1B1B] leading-tight mb-3">
-                Consejos creativos para conectar a tus hijos con el español
+                {t.newsletterTitle[language]}
               </h3>
 
               <p className="font-sans text-base sm:text-lg text-[#555] leading-relaxed mb-4">
-                Recibe ideas prácticas de Reyes: juegos de palabras ilustrados, detonantes de conversación para la sobremesa, actividades artísticas para hacer en casa y recomendaciones de álbumes en español.
+                {t.newsletterDesc[language]}
               </p>
 
               <div className="flex flex-wrap items-center gap-3 font-sans text-xs text-[#666]">
                 <span className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-[#E86A33]" />
-                  <span>Ideas de 5-10 minutos</span>
+                  <span>{language === 'es' ? 'Ideas de 5-10 minutos' : '5-10 minute ideas'}</span>
                 </span>
                 <span className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-[#E86A33]" />
-                  <span>Homeschool & Bilingües</span>
+                  <span>{language === 'es' ? 'Homeschool & Bilingües' : 'Homeschool & Bilingual'}</span>
                 </span>
                 <span className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-[#E86A33]" />
-                  <span>Sin fichas aburridas</span>
+                  <span>{language === 'es' ? 'Sin fichas aburridas' : 'Zero dull worksheets'}</span>
                 </span>
               </div>
             </div>
@@ -81,13 +86,13 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
                     <CheckCircle2 className="w-7 h-7 text-[#E86A33]" />
                   </div>
                   <h4 className="font-gaegu text-2xl font-bold text-[#1D1B1B] mb-1">
-                    ¡Bienvenido/a a la comunidad!
+                    {t.successTitle[language]}
                   </h4>
                   <p className="font-sans text-sm text-[#555] leading-relaxed mb-3">
-                    Te enviaremos los próximos consejos de español creativo a <strong>{email}</strong>.
+                    {t.successDesc[language]} <strong>{email}</strong>.
                   </p>
                   <p className="font-sans text-xs text-[#E86A33] font-semibold">
-                    ✦ Revisa tu bandeja de entrada en unos instantes.
+                    {language === 'es' ? '✦ Revisa tu bandeja de entrada en unos instantes.' : '✦ Check your inbox shortly.'}
                   </p>
                 </div>
               ) : (
@@ -97,14 +102,14 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
                       htmlFor="newsletter-parent-name"
                       className="block font-sans text-xs font-bold text-[#1D1B1B] mb-1 uppercase tracking-wider"
                     >
-                      Tu nombre (opcional)
+                      {t.nameLabel[language]}
                     </label>
                     <input
                       id="newsletter-parent-name"
                       type="text"
                       value={parentName}
                       onChange={(e) => setParentName(e.target.value)}
-                      placeholder="Ej. María o Carlos"
+                      placeholder={language === 'es' ? 'Ej. María o Carlos' : 'e.g. Sarah or Michael'}
                       className="w-full px-4 py-2.5 rounded-full bg-white border border-[#E5E2DC] text-base text-[#1D1B1B] placeholder:text-[#888] focus:outline-hidden focus:border-[#E86A33]"
                     />
                   </div>
@@ -114,7 +119,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
                       htmlFor="newsletter-email"
                       className="block font-sans text-xs font-bold text-[#1D1B1B] mb-1 uppercase tracking-wider"
                     >
-                      Tu correo electrónico *
+                      {t.emailLabel[language]} *
                     </label>
                     <input
                       id="newsletter-email"
@@ -122,7 +127,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="tu-email@ejemplo.com"
+                      placeholder={language === 'es' ? 'tu-email@ejemplo.com' : 'your-email@example.com'}
                       className="w-full px-4 py-2.5 rounded-full bg-white border border-[#E5E2DC] text-base text-[#1D1B1B] placeholder:text-[#888] focus:outline-hidden focus:border-[#E86A33]"
                     />
                   </div>
@@ -134,17 +139,17 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
                     className="btn-accent w-full text-xl py-2.5 px-5 rounded-full mt-2"
                   >
                     {isSubmitting ? (
-                      <span>Suscribiendo...</span>
+                      <span>{language === 'es' ? 'Suscribiendo...' : 'Subscribing...'}</span>
                     ) : (
                       <>
-                        <span>Recibir Consejos Creativos</span>
+                        <span>{t.submitBtn[language]}</span>
                         <Send className="w-4 h-4 text-white ml-1" />
                       </>
                     )}
                   </button>
 
                   <p className="font-sans text-[11px] text-[#777] text-center leading-tight">
-                    Cero spam · Puedes cancelar cuando quieras con un solo clic.
+                    {t.privacy[language]}
                   </p>
                 </form>
               )}
@@ -159,62 +164,71 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
           {/* Brand Info */}
           <div className="md:col-span-6 flex flex-col items-start">
             <div className="flex items-center gap-2.5 mb-3">
-              <div className="w-9 h-9 rounded-full bg-[#E86A33] text-white flex items-center justify-center">
-                <TreePine className="w-5 h-5 text-white" />
+              <div className="w-10 h-10 rounded-full bg-white border border-[#E5E2DC] p-0.5 shadow-xs overflow-hidden shrink-0">
+                <img
+                  src={creativeForestLogo}
+                  alt="The Creative Forest Logo"
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div>
                 <span className="block font-gaegu text-2xl font-bold leading-none text-[#1D1B1B]">
                   {BRAND_INFO.subBrand}
                 </span>
                 <span className="block font-sans text-xs text-[#666]">
-                  por {BRAND_INFO.educator}
+                  {language === 'es' ? 'por' : 'by'} {BRAND_INFO.educator}
                 </span>
               </div>
             </div>
 
             <p className="font-sans text-sm text-[#555] leading-relaxed max-w-md mb-3">
-              Español creativo para niños a través de historias, arte, dibujo, ciencia y naturaleza. Una alternativa viva pensada para familias homeschool y hogares bilingües.
+              {t.bioShort[language]}
             </p>
 
             <div className="font-sans text-xs text-[#E86A33] font-semibold italic">
-              "El niño no solo aprende español. Utiliza el español para crear."
+              {t.quote[language]}
             </div>
           </div>
 
           {/* Quick Links */}
           <div className="md:col-span-3 font-sans text-xs">
             <h4 className="font-bold uppercase tracking-wider text-[#1D1B1B] mb-3">
-              Explora el proyecto
+              {t.explore[language]}
             </h4>
             <ul className="space-y-2 font-gaegu text-xl">
               <li>
                 <a href="#newsletter-section" className="text-[#E86A33] hover:underline">
-                  ✦ Newsletter con Tips
+                  ✦ {language === 'es' ? 'Newsletter con Tips' : 'Newsletter Tips'}
                 </a>
               </li>
               <li>
                 <a href="#propuesta" className="text-[#1D1B1B] hover:text-[#E86A33]">
-                  ✦ La Propuesta
+                  ✦ {TRANSLATIONS.nav.proposal[language]}
                 </a>
               </li>
               <li>
                 <a href="#como-funciona" className="text-[#1D1B1B] hover:text-[#E86A33]">
-                  ✦ Cómo Funciona
+                  ✦ {TRANSLATIONS.nav.howItWorks[language]}
                 </a>
               </li>
               <li>
                 <a href="#metodo" className="text-[#1D1B1B] hover:text-[#E86A33]">
-                  ✦ El Método CREAR
+                  ✦ {TRANSLATIONS.nav.method[language]}
                 </a>
               </li>
               <li>
                 <a href="#club-lectura" className="text-[#1D1B1B] hover:text-[#E86A33]">
-                  ✦ Club YouTube
+                  ✦ {TRANSLATIONS.nav.youtubeClub[language]}
+                </a>
+              </li>
+              <li>
+                <a href="#testimonios" className="text-[#1D1B1B] hover:text-[#E86A33]">
+                  ✦ {TRANSLATIONS.nav.testimonials[language]}
                 </a>
               </li>
               <li>
                 <a href="#sobre-reyes" className="text-[#1D1B1B] hover:text-[#E86A33]">
-                  ✦ Sobre Reyes Portas
+                  ✦ {TRANSLATIONS.nav.aboutReyes[language]}
                 </a>
               </li>
             </ul>
@@ -223,10 +237,10 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
           {/* Direct Contact */}
           <div className="md:col-span-3">
             <h4 className="font-sans text-xs font-bold uppercase tracking-wider text-[#1D1B1B] mb-3">
-              Contacto con Reyes
+              {t.contact[language]}
             </h4>
             <p className="font-sans text-sm text-[#555] leading-relaxed mb-4">
-              ¿Tienes preguntas sobre el acompañamiento o el club de lectura? Escríbeme directamente:
+              {t.contactDesc[language]}
             </p>
             <button
               type="button"
@@ -235,7 +249,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
               className="btn-accent text-lg py-2 px-5 rounded-full inline-flex items-center gap-2"
             >
               <Mail className="w-4 h-4" />
-              <span>Contactar con Reyes</span>
+              <span>{t.contactBtn[language]}</span>
             </button>
           </div>
 
@@ -243,7 +257,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
 
         {/* Natural SEO Keywords Row */}
         <div className="py-4 border-b border-[#E5E2DC] text-xs font-sans text-[#777] flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-center">
-          <span className="font-semibold text-[#1D1B1B]">Temas clave:</span>
+          <span className="font-semibold text-[#1D1B1B]">
+            {language === 'es' ? 'Temas clave:' : 'Key focuses:'}
+          </span>
           <span>Spanish for kids</span>
           <span>•</span>
           <span>Spanish through art</span>

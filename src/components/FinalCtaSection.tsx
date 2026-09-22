@@ -1,11 +1,16 @@
 import React from 'react';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { TRANSLATIONS } from '../data/translations';
 
 interface FinalCtaSectionProps {
   onOpenContact: () => void;
 }
 
 export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({ onOpenContact }) => {
+  const { language } = useLanguage();
+  const t = TRANSLATIONS.finalCta;
+
   return (
     <section
       id="contacto-final"
@@ -18,16 +23,16 @@ export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({ onOpenContact 
           
           <div className="mb-3">
             <span className="pill shadow-xs">
-              Primer Encuentro
+              {t.badge[language]}
             </span>
           </div>
 
           <h3 className="section-title text-center text-4xl sm:text-5xl md:text-6xl mb-4">
-            ¿Listo para empezar?
+            {t.title[language]}
           </h3>
 
           <p className="text-body max-w-xl mx-auto mb-8 text-lg sm:text-xl text-[#444444]">
-            Cuéntame qué temas le apasionan a tu hijo/a y diseñemos una ruta creativa para su bilingüismo.
+            {t.description[language]}
           </p>
 
           <button
@@ -35,16 +40,16 @@ export const FinalCtaSection: React.FC<FinalCtaSectionProps> = ({ onOpenContact 
             onClick={onOpenContact}
             className="btn-ink text-2xl py-3.5 px-8 rounded-full inline-flex items-center gap-2 shadow-md"
           >
-            <span>Contactar con Reyes</span>
+            <span>{t.button[language]}</span>
             <ArrowRight className="w-5 h-5" />
           </button>
 
           <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs font-sans text-[#777]">
-            <span>✓ Sin compromiso</span>
+            <span>{language === 'es' ? '✓ Sin compromiso' : '✓ No obligation'}</span>
             <span>·</span>
-            <span>✓ Conversación directa con Reyes</span>
+            <span>{language === 'es' ? '✓ Conversación directa con Reyes' : '✓ Direct talk with Reyes'}</span>
             <span>·</span>
-            <span>✓ Propuesta adaptada a su edad</span>
+            <span>{language === 'es' ? '✓ Propuesta adaptada a su edad' : '✓ Tailored to child’s pace'}</span>
           </div>
 
         </div>

@@ -16,6 +16,8 @@ export const BRAND_INFO = {
   targetAudience: "Familias homeschool y familias bilingües con niños de 6 a 12 años",
   heroImage: "/src/assets/images/creative_forest_hero_1789998262924.jpg",
   readingClubImage: "/src/assets/images/story_reading_club_1789998280611.jpg",
+  logoImage: "/creative_forest_logo.jpeg",
+  bannerImage: "/creative_forest_logo.jpeg",
 };
 
 export const PILLARS: PillarItem[] = [

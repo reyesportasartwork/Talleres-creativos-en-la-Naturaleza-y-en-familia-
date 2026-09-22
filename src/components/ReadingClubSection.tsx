@@ -1,11 +1,16 @@
 import React from 'react';
 import { Youtube, ExternalLink, ArrowRight } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { TRANSLATIONS } from '../data/translations';
 
 interface ReadingClubSectionProps {
   onOpenContact: () => void;
 }
 
 export const ReadingClubSection: React.FC<ReadingClubSectionProps> = ({ onOpenContact }) => {
+  const { language } = useLanguage();
+  const t = TRANSLATIONS.readingClub;
+
   return (
     <section
       id="club-lectura"
@@ -19,7 +24,7 @@ export const ReadingClubSection: React.FC<ReadingClubSectionProps> = ({ onOpenCo
             {/* Tag */}
             <div className="flex items-center gap-2 mb-4">
               <span className="pill text-xs py-1 px-3">
-                Puerta de Entrada Gratuita
+                {t.badge[language]}
               </span>
               <span className="text-xs font-sans text-[#666]">
                 The Creative Forest en YouTube
@@ -27,31 +32,41 @@ export const ReadingClubSection: React.FC<ReadingClubSectionProps> = ({ onOpenCo
             </div>
 
             <h2 className="font-gaegu text-4xl sm:text-5xl md:text-6xl font-bold text-[#1D1B1B] leading-none mb-4">
-              Club de Lectura en YouTube
+              {t.title[language]}
             </h2>
 
             <p className="font-sans text-base sm:text-lg text-[#555] leading-relaxed mb-6">
-              Una forma accesible para que las familias descubran cómo un álbum ilustrado en español se convierte en un detonante creativo, sin compromiso previo.
+              {t.subtitle[language]}
             </p>
 
             {/* The 4-Step Formula from Variation 4 */}
             <div className="bg-[#F8F7F4] border border-[#E5E2DC] rounded-[28px] p-5 sm:p-6 mb-6">
               <span className="font-sans text-xs uppercase tracking-wider text-[#E86A33] font-bold block mb-3">
-                Nuestra fórmula en cada episodio:
+                {language === 'es' ? 'Nuestra fórmula en cada episodio:' : 'Our formula in each episode:'}
               </span>
               <div className="flex flex-wrap items-center gap-2 sm:gap-3 font-gaegu text-xl sm:text-2xl font-bold text-[#1D1B1B]">
-                <span className="px-4 py-1.5 rounded-full bg-white border border-[#E5E2DC]">1. CUENTO</span>
+                <span className="px-4 py-1.5 rounded-full bg-white border border-[#E5E2DC]">
+                  {language === 'es' ? '1. CUENTO' : '1. STORY'}
+                </span>
                 <span className="text-[#E86A33]">→</span>
-                <span className="px-4 py-1.5 rounded-full bg-[#FFC947]/30 border border-[#E5E2DC]">2. PALABRAS</span>
+                <span className="px-4 py-1.5 rounded-full bg-[#FFC947]/30 border border-[#E5E2DC]">
+                  {language === 'es' ? '2. PALABRAS' : '2. WORDS'}
+                </span>
                 <span className="text-[#E86A33]">→</span>
-                <span className="px-4 py-1.5 rounded-full bg-white border border-[#E5E2DC]">3. CONVERSACIÓN</span>
+                <span className="px-4 py-1.5 rounded-full bg-white border border-[#E5E2DC]">
+                  {language === 'es' ? '3. CONVERSACIÓN' : '3. DIALOGUE'}
+                </span>
                 <span className="text-[#E86A33]">→</span>
-                <span className="px-4 py-1.5 rounded-full bg-[#E86A33]/15 border border-[#E5E2DC]">4. CREACIÓN</span>
+                <span className="px-4 py-1.5 rounded-full bg-[#E86A33]/15 border border-[#E5E2DC]">
+                  {language === 'es' ? '4. CREACIÓN' : '4. CREATION'}
+                </span>
               </div>
             </div>
 
             <p className="font-sans text-xs sm:text-sm text-[#777] leading-relaxed mb-8">
-              ✦ En los vídeos se exploran ideas, vocabulario y propuestas prácticas para hacer en casa. No requiere la lectura mecánica de libros enteros y respeta escrupulosamente los derechos de autor.
+              {language === 'es'
+                ? '✦ En los vídeos se exploran ideas, vocabulario y propuestas prácticas para hacer en casa. No requiere la lectura mecánica de libros enteros y respeta escrupulosamente los derechos de autor.'
+                : '✦ Video sessions explore ideas, vocabulary, and hands-on activities to enjoy at home. Designed to celebrate books without robotic reading, honoring copyright.'}
             </p>
 
             {/* Actions */}
@@ -63,7 +78,7 @@ export const ReadingClubSection: React.FC<ReadingClubSectionProps> = ({ onOpenCo
                 className="btn-accent text-xl py-3 px-6 rounded-full flex items-center gap-2"
               >
                 <Youtube className="w-5 h-5 text-white" />
-                <span>Ver el Club en YouTube</span>
+                <span>{t.watchCta[language]}</span>
                 <ExternalLink className="w-4 h-4 ml-0.5 opacity-80" />
               </a>
 
@@ -72,7 +87,7 @@ export const ReadingClubSection: React.FC<ReadingClubSectionProps> = ({ onOpenCo
                 onClick={onOpenContact}
                 className="btn-ink text-xl py-3 px-6 rounded-full flex items-center gap-2"
               >
-                <span>Acompañamiento Personalizado</span>
+                <span>{t.joinCta[language]}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>

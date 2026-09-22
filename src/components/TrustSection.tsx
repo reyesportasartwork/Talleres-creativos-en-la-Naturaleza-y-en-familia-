@@ -1,8 +1,33 @@
 import React from 'react';
-import { TRUST_CREDENTIALS } from '../data/content';
 import { ShieldCheck, Heart } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { TRANSLATIONS } from '../data/translations';
 
 export const TrustSection: React.FC = () => {
+  const { language } = useLanguage();
+  const t = TRANSLATIONS.trust;
+
+  const trustCards = [
+    {
+      title: language === 'es' ? 'Acompañamiento Personalizado' : 'Tailored Mentorship',
+      desc: language === 'es'
+        ? 'Cada niño y cada familia son únicos. Diseñamos dinámicas y materiales adaptados a sus propios intereses.'
+        : 'Every child and family is unique. We design dynamics and materials adapted to their natural interests.',
+    },
+    {
+      title: language === 'es' ? 'Entornos Seguros y Calmos' : 'Safe & Calm Environments',
+      desc: language === 'es'
+        ? 'Sesiones digitales protegidas, sin juicios ni exámenes. Un espacio acogedor para expresarse con libertad.'
+        : 'Protected digital sessions, free of tests or rigid pressure. A welcoming space to speak freely.',
+    },
+    {
+      title: language === 'es' ? 'Vínculo Directo con la Educadora' : 'Direct Educator Relationship',
+      desc: language === 'es'
+        ? 'Sin intermediarios ni academias impersonales. Comunicación constante y cercana con Reyes Portas.'
+        : 'No intermediaries or impersonal academies. Ongoing, warm communication with Reyes Portas.',
+    },
+  ];
+
   return (
     <section
       id="confianza"
@@ -13,20 +38,20 @@ export const TrustSection: React.FC = () => {
         <div className="text-center max-w-2xl mx-auto mb-12">
           <div className="mb-3">
             <span className="pill shadow-xs">
-              Confianza & Transparencia
+              {t.badge[language]}
             </span>
           </div>
           <h2 className="section-title text-center text-[#1D1B1B]">
-            Acompañamiento Auténtico
+            {t.title[language]}
           </h2>
           <p className="text-body text-center text-lg text-[#555]">
-            Un proyecto independiente fundado en la calidez humana y el respeto a la infancia.
+            {t.subtitle[language]}
           </p>
         </div>
 
         {/* Trust Cards Grid in Variation 4 Style */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-          {TRUST_CREDENTIALS.slice(0, 3).map((signal, idx) => (
+          {trustCards.map((card, idx) => (
             <div
               key={idx}
               className="bg-white border border-[#E5E2DC] rounded-[32px] p-8 shadow-xs flex flex-col justify-between"
@@ -36,10 +61,10 @@ export const TrustSection: React.FC = () => {
                   <ShieldCheck className="w-5 h-5 text-[#E86A33]" />
                 </div>
                 <h3 className="font-gaegu text-2xl font-bold text-[#1D1B1B] mb-2">
-                  {signal.title}
+                  {card.title}
                 </h3>
                 <p className="font-sans text-sm text-[#555] leading-relaxed">
-                  {signal.description}
+                  {card.desc}
                 </p>
               </div>
             </div>
@@ -50,10 +75,10 @@ export const TrustSection: React.FC = () => {
         <div className="bg-[#EFECE6] border border-[#E5E2DC] rounded-[28px] p-6 text-center max-w-3xl mx-auto">
           <div className="flex items-center justify-center gap-2 mb-2 font-sans text-xs uppercase tracking-wider text-[#E86A33] font-bold">
             <Heart className="w-4 h-4 text-[#E86A33]" />
-            <span>Compromiso ético con las familias</span>
+            <span>{t.commitment[language]}</span>
           </div>
           <p className="font-sans text-xs sm:text-sm text-[#666] leading-relaxed">
-            Priorizamos la protección de datos de los menores y sus familias. Las sesiones se desarrollan en entornos digitales seguros, sin grabaciones públicas no autorizadas, respetando el ritmo y la privacidad de cada hogar.
+            {t.ethicalNote[language]}
           </p>
         </div>
 

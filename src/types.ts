@@ -1,3 +1,5 @@
+export type Language = 'es' | 'en';
+
 export interface PillarItem {
   id: string;
   iconName: string;
@@ -47,4 +49,35 @@ export interface ContactFormData {
   interests: string[];
   childPassions: string;
   message: string;
+}
+
+export interface TestimonialItem {
+  id: string;
+  parentName: string;
+  childName?: string;
+  rating: number;
+  date: string;
+  courseTitle: {
+    es: string;
+    en: string;
+  };
+  reviewText: {
+    es: string;
+    en: string;
+  };
+  teacherReply?: {
+    es: string;
+    en: string;
+    date?: string;
+  };
+  highlightQuote?: {
+    es: string;
+    en: string;
+  };
+  tags: {
+    es: string[];
+    en: string[];
+  };
+  initials: string;
+  colorBg: string;
 }

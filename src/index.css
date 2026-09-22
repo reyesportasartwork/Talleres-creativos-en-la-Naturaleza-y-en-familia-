@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-gaegu: 'Gaegu', cursive;
+  --font-gaegu: 'Patrick Hand', 'Mali', 'Gaegu', cursive;
   --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
   --font-mono: 'Geist Mono', monospace;
 
@@ -38,7 +38,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Gaegu', cursive;
+  font-family: 'Patrick Hand', 'Mali', 'Gaegu', cursive;
   color: var(--ink);
   line-height: 1.15;
 }
@@ -64,7 +64,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0.85rem 2.2rem;
   background: var(--accent);
   color: #FFFFFF;
-  font-family: 'Gaegu', cursive;
+  font-family: 'Patrick Hand', 'Mali', 'Gaegu', cursive;
   font-size: 1.5rem;
   font-weight: 700;
   border-radius: 9999px;
@@ -88,7 +88,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0.85rem 2.2rem;
   background: var(--ink);
   color: #FFFFFF;
-  font-family: 'Gaegu', cursive;
+  font-family: 'Patrick Hand', 'Mali', 'Gaegu', cursive;
   font-size: 1.5rem;
   font-weight: 700;
   border-radius: 9999px;
@@ -113,7 +113,7 @@ h1, h2, h3, h4, h5, h6 {
   background: #FFFFFF;
   color: var(--ink);
   border: 2px solid #E5E2DC;
-  font-family: 'Gaegu', cursive;
+  font-family: 'Patrick Hand', 'Mali', 'Gaegu', cursive;
   font-size: 1.35rem;
   font-weight: 700;
   border-radius: 9999px;
@@ -129,7 +129,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-link {
-  font-family: 'Gaegu', cursive;
+  font-family: 'Patrick Hand', 'Mali', 'Gaegu', cursive;
   font-size: 1.4rem;
   text-decoration: none;
   color: var(--ink);
@@ -144,7 +144,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section-title {
-  font-family: 'Gaegu', cursive;
+  font-family: 'Patrick Hand', 'Mali', 'Gaegu', cursive;
   font-size: 3rem;
   margin-bottom: 1rem;
   color: var(--accent);
