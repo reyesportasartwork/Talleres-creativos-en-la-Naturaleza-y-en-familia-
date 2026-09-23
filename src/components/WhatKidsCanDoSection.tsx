@@ -3,7 +3,13 @@ import { Sparkles, Palette, Compass, MessageSquare, BookOpen, PenTool, Lightbulb
 import { useLanguage } from '../context/LanguageContext';
 import { TRANSLATIONS } from '../data/translations';
 
-export const WhatKidsCanDoSection: React.FC = () => {
+interface WhatKidsCanDoSectionProps {
+  creationsBanner?: string;
+}
+
+export const WhatKidsCanDoSection: React.FC<WhatKidsCanDoSectionProps> = ({
+  creationsBanner = '/Captura de pantalla 2026-09-22 195801.png',
+}) => {
   const { language } = useLanguage();
   const t = TRANSLATIONS.whatKidsCanDo;
 
@@ -101,6 +107,40 @@ export const WhatKidsCanDoSection: React.FC = () => {
           </h2>
           <p className="text-body text-center text-lg sm:text-xl text-[#555] max-w-2xl mx-auto">
             {t.subtitle[language]}
+          </p>
+        </div>
+
+        {/* Banner de lo Creado en el Taller */}
+        <div className="mb-12 bg-white border-2 border-[#E5E2DC] rounded-[36px] sm:rounded-[44px] p-5 sm:p-7 shadow-xs overflow-hidden">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-4">
+            <div>
+              <div className="inline-flex items-center gap-1.5 text-[#E86A33] text-xs font-bold font-sans uppercase tracking-wider mb-1">
+                <Sparkles className="w-4 h-4" />
+                <span>{language === 'es' ? 'Galería Visual del Taller' : 'Studio Visual Gallery'}</span>
+              </div>
+              <h3 className="font-gaegu text-3xl sm:text-4xl font-bold text-[#1D1B1B]">
+                {language === 'es' ? 'Lo Creado en The Creative Forest' : 'Created in The Creative Forest'}
+              </h3>
+            </div>
+            <span className="font-sans text-xs bg-[#2D4030]/10 text-[#2D4030] font-bold px-3.5 py-1.5 rounded-full shrink-0">
+              {language === 'es' ? 'Proyectos Reales de Alumnos' : 'Real Student Projects'}
+            </span>
+          </div>
+
+          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-[#E5E2DC] shadow-xs group bg-[#FAF8F5]">
+            <img
+              src={encodeURI(creationsBanner)}
+              alt="Lo creado por Reyes en The Creative Forest"
+              onError={(e) => {
+                e.currentTarget.src = '/creaciones_banner.png';
+              }}
+              className="w-full h-auto max-h-[340px] object-cover object-center group-hover:scale-[1.01] transition-transform duration-500"
+            />
+          </div>
+          <p className="font-sans text-xs sm:text-sm text-[#666] text-center mt-3">
+            {language === 'es'
+              ? 'Muestras de los proyectos artísticos, cuentos y cuadernos ilustrados elaborados por los niños durante las sesiones de inmersión creativa.'
+              : 'Samples of art projects, storybooks, and illustrated journals created by children during creative immersion sessions.'}
           </p>
         </div>
 

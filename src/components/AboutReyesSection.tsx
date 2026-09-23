@@ -5,7 +5,15 @@ import { useLanguage } from '../context/LanguageContext';
 import { TRANSLATIONS } from '../data/translations';
 import reyesPhoto from '../assets/images/reyes_photo.jpg';
 
-export const AboutReyesSection: React.FC = () => {
+interface AboutReyesSectionProps {
+  reyesPhoto?: string;
+  felpaPhoto?: string;
+}
+
+export const AboutReyesSection: React.FC<AboutReyesSectionProps> = ({
+  reyesPhoto = '/Captura de pantalla 2026-09-22 195717.png',
+  felpaPhoto = '/Captura de pantalla 2024-08-09 170647.png',
+}) => {
   const { language } = useLanguage();
   const t = TRANSLATIONS.aboutReyes;
 
@@ -26,16 +34,19 @@ export const AboutReyesSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Visual Column / Studio Portrait Area from Variation 4 */}
-          <div className="lg:col-span-5 flex flex-col items-center">
+          <div className="lg:col-span-5 flex flex-col items-center gap-5">
             <div className="w-full max-w-sm bg-[#F8F7F4] border border-[#E5E2DC] rounded-[40px] p-6 sm:p-8 shadow-xs flex flex-col items-center text-center">
               
-              {/* Photo/Emblem of Reyes with Warm Border & Subtle Floating Tag */}
-              <div className="relative w-full aspect-square max-w-[280px] rounded-[32px] overflow-hidden border-2 border-[#E5E2DC] shadow-sm mb-5 bg-[#FAF8F5] p-3 flex items-center justify-center group">
+              {/* Photo of Reyes with Warm Border & Subtle Floating Tag */}
+              <div className="relative w-full aspect-square max-w-[280px] rounded-[32px] overflow-hidden border-2 border-[#E5E2DC] shadow-sm mb-5 bg-[#FAF8F5] p-2 flex items-center justify-center group">
                 <img
-                  src={reyesPhoto}
+                  src={encodeURI(reyesPhoto)}
                   alt="Reyes Portas - The Creative Forest"
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                  onError={(e) => {
+                    e.currentTarget.src = '/reyes_foto.png';
+                  }}
+                  className="w-full h-full object-cover rounded-[24px] group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-xs px-3 py-1.5 rounded-full border border-[#E5E2DC] shadow-xs flex items-center justify-center gap-1.5">
                   <Sparkles className="w-3.5 h-3.5 text-[#E86A33]" />
@@ -71,6 +82,34 @@ export const AboutReyesSection: React.FC = () => {
               </div>
 
             </div>
+
+            {/* Felpa Studio Companion Card */}
+            <div className="w-full max-w-sm bg-[#FCFBF7] border border-[#E5E2DC] rounded-[28px] p-4 shadow-2xs flex items-center gap-4">
+              <div className="w-16 h-16 rounded-2xl overflow-hidden border border-[#E5E2DC] shrink-0 bg-white p-1">
+                <img
+                  src={encodeURI(felpaPhoto)}
+                  alt="Felpa - Amigo del taller"
+                  onError={(e) => {
+                    e.currentTarget.src = '/felpa_foto.png';
+                  }}
+                  className="w-full h-full object-cover rounded-xl"
+                />
+              </div>
+              <div className="text-left">
+                <div className="flex items-center gap-1.5">
+                  <span className="font-gaegu text-xl font-bold text-[#1D1B1B]">Felpa</span>
+                  <span className="text-[10px] bg-[#2D4030]/10 text-[#2D4030] font-bold px-2 py-0.5 rounded-full font-sans">
+                    {language === 'es' ? 'Títere del Taller' : 'Studio Puppet'}
+                  </span>
+                </div>
+                <p className="font-sans text-xs text-[#666] leading-tight mt-0.5">
+                  {language === 'es'
+                    ? 'El cómplice favorito de los peques para charlar, reír y hablar en español con ternura.'
+                    : 'The children’s favorite companion to chat, laugh, and speak Spanish with warmth.'}
+                </p>
+              </div>
+            </div>
+
           </div>
 
           {/* Bio Content Column */}

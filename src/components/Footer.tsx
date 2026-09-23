@@ -7,9 +7,13 @@ import creativeForestLogo from '../assets/images/creative_forest_logo.jpeg';
 
 interface FooterProps {
   onOpenContact: () => void;
+  logo?: string;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
+export const Footer: React.FC<FooterProps> = ({
+  onOpenContact,
+  logo = '/WhatsApp Image 2026-04-20 at 14.07.37 (1).jpeg',
+}) => {
   const { language } = useLanguage();
   const t = TRANSLATIONS.footer;
   const [email, setEmail] = useState('');
@@ -163,11 +167,14 @@ export const Footer: React.FC<FooterProps> = ({ onOpenContact }) => {
           
           {/* Brand Info */}
           <div className="md:col-span-6 flex flex-col items-start">
-            <div className="flex items-center gap-2.5 mb-3">
-              <div className="w-10 h-10 rounded-full bg-white border border-[#E5E2DC] p-0.5 shadow-xs overflow-hidden shrink-0">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white border border-[#E5E2DC] p-1 shadow-[0_2px_10px_rgba(0,0,0,0.08)] overflow-hidden shrink-0 flex items-center justify-center">
                 <img
-                  src={creativeForestLogo}
+                  src={encodeURI(logo)}
                   alt="The Creative Forest Logo"
+                  onError={(e) => {
+                    e.currentTarget.src = creativeForestLogo;
+                  }}
                   className="w-full h-full object-contain"
                 />
               </div>

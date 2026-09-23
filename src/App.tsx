@@ -15,6 +15,18 @@ import { FinalCtaSection } from './components/FinalCtaSection';
 import { ContactModal } from './components/ContactModal';
 import { Footer } from './components/Footer';
 
+// Rutas de imágenes alojadas en la carpeta /public extraídas de los archivos subidos
+export const PUBLIC_ASSETS = {
+  // Logo de la empresa The Creative Forest
+  logo: '/the_creative_forest_logo.jpeg',
+  // Foto personal de Reyes Portas
+  reyesPhoto: '/Captura de pantalla 2026-09-22 195717.png',
+  // Foto de Felpa (personaje y compañero del taller)
+  felpaPhoto: '/Captura de pantalla 2024-08-09 170647.png',
+  // Banner panorámico donde aparece lo creado en el taller
+  creationsBanner: '/Captura de pantalla 2026-09-22 195801.png',
+};
+
 export default function App() {
   const [contactModalOpen, setContactModalOpen] = useState(false);
 
@@ -30,14 +42,14 @@ export default function App() {
     <LanguageProvider>
       <div id="landing-page-root" className="min-h-screen flex flex-col bg-[#F8F7F4] text-[#1D1B1B]">
         
-        {/* Primary Navigation in Variation 4 Style */}
-        <Navbar onOpenContact={handleOpenContact} />
+        {/* Primary Navigation in Variation 4 Style with Logo */}
+        <Navbar onOpenContact={handleOpenContact} logo={PUBLIC_ASSETS.logo} />
 
         {/* Main Content Area */}
         <main id="main-content" className="flex-1">
           
-          {/* Section 1: Hero (Variation 4 Header with Pill, Gaegu Title, Value Proposition & CTA) */}
-          <Hero onOpenContact={handleOpenContact} />
+          {/* Section 1: Hero con Banner Dinámico no estático con Logo, Reyes, Felpa y Creaciones */}
+          <Hero onOpenContact={handleOpenContact} assets={PUBLIC_ASSETS} />
 
           {/* Section 2: El Problema (Addressing parents warmly) */}
           <ProblemSection />
@@ -48,8 +60,8 @@ export default function App() {
           {/* Section 4: Cómo Funciona (Process & Flexible Real Classroom Cases) */}
           <HowItWorksSection />
 
-          {/* Section 5: Qué Puede Hacer el Niño (Concrete Activities) */}
-          <WhatKidsCanDoSection />
+          {/* Section 5: Qué Puede Hacer el Niño & Banner de Lo Creado */}
+          <WhatKidsCanDoSection creationsBanner={PUBLIC_ASSETS.creationsBanner} />
 
           {/* Section 6: Mi Enfoque (El Método CREAR) */}
           <MethodCrearSection />
@@ -57,8 +69,11 @@ export default function App() {
           {/* Section 7: Club de Lectura en YouTube (Free Entryway) */}
           <ReadingClubSection onOpenContact={handleOpenContact} />
 
-          {/* Section 8: Sobre Reyes (Visual artist & Child Educator) */}
-          <AboutReyesSection />
+          {/* Section 8: Sobre Reyes y su compañero Felpa */}
+          <AboutReyesSection
+            reyesPhoto={PUBLIC_ASSETS.reyesPhoto}
+            felpaPhoto={PUBLIC_ASSETS.felpaPhoto}
+          />
 
           {/* Section 9: Confianza (Credentials & Child Safety Guarantee) */}
           <TrustSection />
@@ -70,7 +85,7 @@ export default function App() {
           <FinalCtaSection onOpenContact={handleOpenContact} />
 
           {/* Footer with Newsletter for Parents & Variation 4 Copyright Signature */}
-          <Footer onOpenContact={handleOpenContact} />
+          <Footer onOpenContact={handleOpenContact} logo={PUBLIC_ASSETS.logo} />
 
         </main>
 

@@ -9,10 +9,12 @@ interface NavbarProps {
   onOpenContact: () => void;
   onSelectView?: (view: 'studio' | 'detailed') => void;
   currentView?: 'studio' | 'detailed';
+  logo?: string;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   onOpenContact,
+  logo = '/WhatsApp Image 2026-04-20 at 14.07.37 (1).jpeg',
 }) => {
   const { language, setLanguage } = useLanguage();
   const t = TRANSLATIONS.nav;
@@ -52,20 +54,23 @@ export const Navbar: React.FC<NavbarProps> = ({
         <a
           href="#hero-section"
           id="brand-logo"
-          className="flex items-center gap-2.5 group focus:outline-hidden"
+          className="flex items-center gap-3 sm:gap-3.5 group focus:outline-hidden transition-transform duration-300 ease-out hover:scale-105 active:scale-[0.98]"
         >
-          <div className="w-10 h-10 rounded-full bg-white border border-[#E5E2DC] p-0.5 shadow-xs overflow-hidden transition-transform group-hover:scale-105 shrink-0">
+          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white border-2 border-[#E5E2DC] p-1 shadow-[0_2px_12px_rgba(0,0,0,0.08)] group-hover:shadow-[0_4px_16px_rgba(0,0,0,0.14)] overflow-hidden transition-all duration-300 group-hover:scale-105 shrink-0 flex items-center justify-center">
             <img
-              src={creativeForestLogo}
+              src={encodeURI(logo)}
               alt="The Creative Forest Logo"
-              className="w-full h-full object-contain"
+              onError={(e) => {
+                e.currentTarget.src = creativeForestLogo;
+              }}
+              className="w-full h-full object-contain transition-transform duration-700 ease-in-out group-hover:rotate-[360deg]"
             />
           </div>
-          <div className="flex flex-col">
-            <span className="text-2xl sm:text-3xl font-bold leading-none text-[#1D1B1B] font-gaegu tracking-tight">
+          <div className="flex flex-col justify-center">
+            <span className="text-2xl sm:text-3xl font-bold leading-tight text-[#1D1B1B] font-gaegu tracking-tight">
               {BRAND_INFO.subBrand}
             </span>
-            <span className="text-[11px] font-sans text-[#666666] font-medium">
+            <span className="text-xs font-sans text-[#666666] font-medium leading-none">
               {t.byEducator[language]} {BRAND_INFO.educator}
             </span>
           </div>
