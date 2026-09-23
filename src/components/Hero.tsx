@@ -19,7 +19,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenContact, assets }) => {
 
   const defaultAssets: DynamicBannerAssets = {
     logo: '/the_creative_forest_logo.jpeg',
-    reyesPhoto: '/Captura de pantalla 2026-09-22 195717.png',
+    reyesPhoto: '/Sin título-1.png',
     felpaPhoto: '/Captura de pantalla 2024-08-09 170647.png',
     creationsBanner: '/Captura de pantalla 2026-09-22 195801.png',
   };

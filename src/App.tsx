@@ -20,7 +20,7 @@ export const PUBLIC_ASSETS = {
   // Logo de la empresa The Creative Forest
   logo: '/the_creative_forest_logo.jpeg',
   // Foto personal de Reyes Portas
-  reyesPhoto: '/Captura de pantalla 2026-09-22 195717.png',
+  reyesPhoto: '/Sin título-1.png',
   // Foto de Felpa (personaje y compañero del taller)
   felpaPhoto: '/Captura de pantalla 2024-08-09 170647.png',
   // Banner panorámico donde aparece lo creado en el taller

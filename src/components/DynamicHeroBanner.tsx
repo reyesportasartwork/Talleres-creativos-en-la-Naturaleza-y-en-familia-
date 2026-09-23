@@ -221,7 +221,7 @@ export const DynamicHeroBanner: React.FC<DynamicHeroBannerProps> = ({ assets, on
               className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center min-h-[220px]"
             >
               {/* Visual: Reyes & Felpa dual photo display */}
-              <div className="md:col-span-5 flex items-center justify-center gap-3 sm:gap-4">
+              <div className="md:col-span-5 flex items-center justify-center gap-3 sm:gap-4.5 py-1">
                 {/* Reyes Card with subtle fade-in-up */}
                 <motion.div
                   initial={{ opacity: 0, y: 14 }}
@@ -229,27 +229,27 @@ export const DynamicHeroBanner: React.FC<DynamicHeroBannerProps> = ({ assets, on
                   transition={{ duration: 0.45, ease: 'easeOut', delay: 0.08 }}
                   className="flex flex-col items-center"
                 >
-                  <div className="w-24 h-28 sm:w-28 sm:h-34 rounded-2xl overflow-hidden border-2 border-[#E5E2DC] shadow-xs bg-white p-1 group hover:scale-105 transition-transform">
+                  <div className="w-28 h-36 sm:w-32 sm:h-42 md:w-36 md:h-46 rounded-2xl overflow-hidden border-2 border-[#E5E2DC] shadow-md bg-white group hover:scale-105 transition-transform flex items-center justify-center">
                     <img
                       src={encodeURI(assets.reyesPhoto)}
                       alt="Reyes Portas"
                       onError={(e) => {
                         e.currentTarget.src = '/reyes_foto.png';
                       }}
-                      className="w-full h-full object-cover rounded-xl"
+                      className="w-full h-full object-cover object-[center_top] transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
-                  <span className="mt-1.5 font-gaegu text-base font-bold text-[#1D1B1B]">
+                  <span className="mt-2 font-gaegu text-lg sm:text-xl font-bold text-[#1D1B1B]">
                     Reyes Portas
                   </span>
-                  <span className="text-[10px] font-sans text-[#E86A33] font-bold">
+                  <span className="text-[11px] font-sans text-[#E86A33] font-bold">
                     {language === 'es' ? 'Artista & Profe' : 'Artist & Educator'}
                   </span>
                 </motion.div>
 
                 {/* Friendly Heart / Connector */}
-                <div className="w-8 h-8 rounded-full bg-[#FFC947]/40 flex items-center justify-center shrink-0">
-                  <Heart className="w-4 h-4 text-[#E86A33]" />
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#FFC947]/40 flex items-center justify-center shrink-0">
+                  <Heart className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#E86A33]" />
                 </div>
 
                 {/* Felpa Card with subtle fade-in-up */}
@@ -259,20 +259,20 @@ export const DynamicHeroBanner: React.FC<DynamicHeroBannerProps> = ({ assets, on
                   transition={{ duration: 0.45, ease: 'easeOut', delay: 0.16 }}
                   className="flex flex-col items-center"
                 >
-                  <div className="w-24 h-28 sm:w-28 sm:h-34 rounded-2xl overflow-hidden border-2 border-[#E5E2DC] shadow-xs bg-white p-1 group hover:scale-105 transition-transform">
+                  <div className="w-28 h-36 sm:w-32 sm:h-42 md:w-36 md:h-46 rounded-2xl overflow-hidden border-2 border-[#E5E2DC] shadow-md bg-white group hover:scale-105 transition-transform flex items-center justify-center">
                     <img
                       src={encodeURI(assets.felpaPhoto)}
                       alt="Felpa - Amigo del taller"
                       onError={(e) => {
                         e.currentTarget.src = '/felpa_foto.png';
                       }}
-                      className="w-full h-full object-cover rounded-xl"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
-                  <span className="mt-1.5 font-gaegu text-base font-bold text-[#1D1B1B]">
+                  <span className="mt-2 font-gaegu text-lg sm:text-xl font-bold text-[#1D1B1B]">
                     Felpa 🐾
                   </span>
-                  <span className="text-[10px] font-sans text-[#2D4030] font-bold">
+                  <span className="text-[11px] font-sans text-[#2D4030] font-bold">
                     {language === 'es' ? 'Compañero Fiel' : 'Studio Companion'}
                   </span>
                 </motion.div>

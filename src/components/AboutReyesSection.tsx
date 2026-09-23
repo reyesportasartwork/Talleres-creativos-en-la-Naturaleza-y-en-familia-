@@ -11,7 +11,7 @@ interface AboutReyesSectionProps {
 }
 
 export const AboutReyesSection: React.FC<AboutReyesSectionProps> = ({
-  reyesPhoto = '/Captura de pantalla 2026-09-22 195717.png',
+  reyesPhoto = '/Sin título-1.png',
   felpaPhoto = '/Captura de pantalla 2024-08-09 170647.png',
 }) => {
   const { language } = useLanguage();
@@ -38,7 +38,7 @@ export const AboutReyesSection: React.FC<AboutReyesSectionProps> = ({
             <div className="w-full max-w-sm bg-[#F8F7F4] border border-[#E5E2DC] rounded-[40px] p-6 sm:p-8 shadow-xs flex flex-col items-center text-center">
               
               {/* Photo of Reyes with Warm Border & Subtle Floating Tag */}
-              <div className="relative w-full aspect-square max-w-[280px] rounded-[32px] overflow-hidden border-2 border-[#E5E2DC] shadow-sm mb-5 bg-[#FAF8F5] p-2 flex items-center justify-center group">
+              <div className="relative w-full aspect-square max-w-[280px] rounded-[32px] overflow-hidden border-2 border-[#E5E2DC] shadow-sm mb-5 bg-[#FAF8F5] flex items-center justify-center group">
                 <img
                   src={encodeURI(reyesPhoto)}
                   alt="Reyes Portas - The Creative Forest"
@@ -46,7 +46,7 @@ export const AboutReyesSection: React.FC<AboutReyesSectionProps> = ({
                   onError={(e) => {
                     e.currentTarget.src = '/reyes_foto.png';
                   }}
-                  className="w-full h-full object-cover rounded-[24px] group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover object-[center_top] group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-xs px-3 py-1.5 rounded-full border border-[#E5E2DC] shadow-xs flex items-center justify-center gap-1.5">
                   <Sparkles className="w-3.5 h-3.5 text-[#E86A33]" />
