@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Menu, X, Globe } from 'lucide-react';
+import { ArrowRight, Menu, X, Globe, Youtube, Instagram } from 'lucide-react';
 import { BRAND_INFO } from '../data/content';
 import { useLanguage } from '../context/LanguageContext';
 import { TRANSLATIONS } from '../data/translations';
@@ -89,9 +89,33 @@ export const Navbar: React.FC<NavbarProps> = ({
           ))}
         </nav>
 
-        {/* Right side controls: Language switcher + Primary Action Button */}
-        <div className="hidden sm:flex items-center gap-3">
+        {/* Right side controls: Socials + Language switcher + Primary Action Button */}
+        <div className="hidden sm:flex items-center gap-2.5 sm:gap-3">
           
+          {/* Social channels (YouTube & Instagram) */}
+          <div className="hidden lg:flex items-center gap-1.5 mr-1">
+            <a
+              href={BRAND_INFO.youtubeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="YouTube The Creative Forest"
+              className="w-8 h-8 rounded-full bg-white border border-[#E5E2DC] hover:border-[#FF0000] text-[#CC0000] flex items-center justify-center transition-all shadow-2xs hover:bg-[#FF0000]/10"
+              title="YouTube: @ThecreativespanishforestTV"
+            >
+              <Youtube className="w-4 h-4" />
+            </a>
+            <a
+              href={BRAND_INFO.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram The Creative Forest"
+              className="w-8 h-8 rounded-full bg-white border border-[#E5E2DC] hover:border-[#E1306C] text-[#C13584] flex items-center justify-center transition-all shadow-2xs hover:bg-[#E1306C]/10"
+              title="Instagram: @the.creative_forest"
+            >
+              <Instagram className="w-4 h-4" />
+            </a>
+          </div>
+
           {/* Language Switcher Button (ES / EN) */}
           <div
             id="language-switcher"
@@ -215,11 +239,33 @@ export const Navbar: React.FC<NavbarProps> = ({
                   setMobileMenuOpen(false);
                   onOpenContact();
                 }}
-                className="btn-accent w-full text-2xl py-3 rounded-full justify-center"
+                className="btn-accent w-full text-2xl py-3 rounded-full justify-center mb-3"
               >
                 <span>{t.cta[language]}</span>
                 <ArrowRight className="w-5 h-5" />
               </button>
+
+              {/* Mobile Social & Direct Links */}
+              <div className="flex items-center justify-center gap-3 pt-2 border-t border-[#E5E2DC]/60">
+                <a
+                  href={BRAND_INFO.youtubeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[#E5E2DC] text-xs font-sans font-bold text-[#CC0000]"
+                >
+                  <Youtube className="w-4 h-4" />
+                  <span>YouTube</span>
+                </a>
+                <a
+                  href={BRAND_INFO.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[#E5E2DC] text-xs font-sans font-bold text-[#C13584]"
+                >
+                  <Instagram className="w-4 h-4" />
+                  <span>Instagram</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>

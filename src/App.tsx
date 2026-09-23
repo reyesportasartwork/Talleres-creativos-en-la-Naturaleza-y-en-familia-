@@ -21,6 +21,8 @@ export const PUBLIC_ASSETS = {
   logo: '/the_creative_forest_logo.jpeg',
   // Foto personal de Reyes Portas
   reyesPhoto: '/Sin título-1.png',
+  // Foto de Reyes con Felpa en el taller
+  reyesFelpaPhoto: '/Captura de pantalla 2026-09-22 195717.png',
   // Foto de Felpa (personaje y compañero del taller)
   felpaPhoto: '/Captura de pantalla 2024-08-09 170647.png',
   // Banner panorámico donde aparece lo creado en el taller
@@ -71,7 +73,7 @@ export default function App() {
 
           {/* Section 8: Sobre Reyes y su compañero Felpa */}
           <AboutReyesSection
-            reyesPhoto={PUBLIC_ASSETS.reyesPhoto}
+            reyesPhoto={PUBLIC_ASSETS.reyesFelpaPhoto}
             felpaPhoto={PUBLIC_ASSETS.felpaPhoto}
           />
 

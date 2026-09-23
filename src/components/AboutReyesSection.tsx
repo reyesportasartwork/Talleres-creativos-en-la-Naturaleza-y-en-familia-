@@ -1,6 +1,6 @@
 import React from 'react';
-import { REYES_BIO } from '../data/content';
-import { CheckCircle2, Heart, Sparkles } from 'lucide-react';
+import { REYES_BIO, BRAND_INFO } from '../data/content';
+import { CheckCircle2, Heart, Sparkles, Mail, Instagram, Youtube } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { TRANSLATIONS } from '../data/translations';
 import reyesPhoto from '../assets/images/reyes_photo.jpg';
@@ -11,7 +11,7 @@ interface AboutReyesSectionProps {
 }
 
 export const AboutReyesSection: React.FC<AboutReyesSectionProps> = ({
-  reyesPhoto = '/Sin título-1.png',
+  reyesPhoto = '/Captura de pantalla 2026-09-22 195717.png',
   felpaPhoto = '/Captura de pantalla 2024-08-09 170647.png',
 }) => {
   const { language } = useLanguage();
@@ -37,21 +37,21 @@ export const AboutReyesSection: React.FC<AboutReyesSectionProps> = ({
           <div className="lg:col-span-5 flex flex-col items-center gap-5">
             <div className="w-full max-w-sm bg-[#F8F7F4] border border-[#E5E2DC] rounded-[40px] p-6 sm:p-8 shadow-xs flex flex-col items-center text-center">
               
-              {/* Photo of Reyes with Warm Border & Subtle Floating Tag */}
+              {/* Photo of Reyes and Felpa with Warm Border & Subtle Floating Tag */}
               <div className="relative w-full aspect-square max-w-[280px] rounded-[32px] overflow-hidden border-2 border-[#E5E2DC] shadow-sm mb-5 bg-[#FAF8F5] flex items-center justify-center group">
                 <img
                   src={encodeURI(reyesPhoto)}
-                  alt="Reyes Portas - The Creative Forest"
+                  alt="Reyes Portas y Felpa - The Creative Forest"
                   referrerPolicy="no-referrer"
                   onError={(e) => {
-                    e.currentTarget.src = '/reyes_foto.png';
+                    e.currentTarget.src = '/Captura de pantalla 2026-09-22 195717.png';
                   }}
-                  className="w-full h-full object-cover object-[center_top] group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-xs px-3 py-1.5 rounded-full border border-[#E5E2DC] shadow-xs flex items-center justify-center gap-1.5">
                   <Sparkles className="w-3.5 h-3.5 text-[#E86A33]" />
                   <span className="font-sans text-[11px] font-bold text-[#1D1B1B] tracking-wide">
-                    {language === 'es' ? 'The Creative Forest • Reyes' : 'The Creative Forest • Reyes'}
+                    {language === 'es' ? 'The Creative Forest • Reyes & Felpa' : 'The Creative Forest • Reyes & Felpa'}
                   </span>
                 </div>
               </div>
@@ -141,6 +141,40 @@ export const AboutReyesSection: React.FC<AboutReyesSectionProps> = ({
                   <span>{disc}</span>
                 </div>
               ))}
+            </div>
+
+            {/* Direct Connect Pills */}
+            <div className="flex flex-wrap items-center gap-2.5 pt-6 mt-6 border-t border-[#E5E2DC]/80">
+              <a
+                href={`mailto:${BRAND_INFO.email}`}
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FAF8F5] border border-[#E5E2DC] hover:border-[#E86A33] text-xs font-sans font-semibold text-[#1D1B1B] hover:text-[#E86A33] transition-colors shadow-2xs"
+                title={`Enviar correo a ${BRAND_INFO.email}`}
+              >
+                <Mail className="w-3.5 h-3.5 text-[#E86A33]" />
+                <span>{BRAND_INFO.email}</span>
+              </a>
+
+              <a
+                href={BRAND_INFO.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FAF8F5] border border-[#E5E2DC] hover:border-[#E1306C] text-xs font-sans font-semibold text-[#1D1B1B] hover:text-[#C13584] transition-colors shadow-2xs"
+                title="Instagram @the.creative_forest"
+              >
+                <Instagram className="w-3.5 h-3.5 text-[#E1306C]" />
+                <span>{BRAND_INFO.instagramHandle}</span>
+              </a>
+
+              <a
+                href={BRAND_INFO.youtubeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FAF8F5] border border-[#E5E2DC] hover:border-[#FF0000] text-xs font-sans font-semibold text-[#1D1B1B] hover:text-[#CC0000] transition-colors shadow-2xs"
+                title="Canal de YouTube"
+              >
+                <Youtube className="w-3.5 h-3.5 text-[#CC0000]" />
+                <span>{BRAND_INFO.youtubeHandle}</span>
+              </a>
             </div>
 
           </div>

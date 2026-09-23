@@ -1,7 +1,8 @@
 import React from 'react';
-import { Youtube, ExternalLink, ArrowRight } from 'lucide-react';
+import { Youtube, Instagram, ExternalLink, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { TRANSLATIONS } from '../data/translations';
+import { BRAND_INFO } from '../data/content';
 
 interface ReadingClubSectionProps {
   onOpenContact: () => void;
@@ -21,14 +22,31 @@ export const ReadingClubSection: React.FC<ReadingClubSectionProps> = ({ onOpenCo
         <div className="bg-white border border-[#E5E2DC] rounded-[40px] p-8 sm:p-12 shadow-xs relative overflow-hidden">
           
           <div className="max-w-3xl">
-            {/* Tag */}
-            <div className="flex items-center gap-2 mb-4">
+            {/* Tag & Channel Handle */}
+            <div className="flex flex-wrap items-center gap-2.5 mb-4">
               <span className="pill text-xs py-1 px-3">
                 {t.badge[language]}
               </span>
-              <span className="text-xs font-sans text-[#666]">
-                The Creative Forest en YouTube
-              </span>
+              <a
+                href={BRAND_INFO.youtubeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FF0000]/10 hover:bg-[#FF0000]/15 text-[#CC0000] text-xs font-sans font-bold transition-colors"
+              >
+                <Youtube className="w-3.5 h-3.5" />
+                <span>{BRAND_INFO.youtubeHandle}</span>
+                <ExternalLink className="w-3 h-3 opacity-70" />
+              </a>
+              <a
+                href={BRAND_INFO.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E1306C]/10 hover:bg-[#E1306C]/15 text-[#C13584] text-xs font-sans font-bold transition-colors"
+              >
+                <Instagram className="w-3.5 h-3.5" />
+                <span>{BRAND_INFO.instagramHandle}</span>
+                <ExternalLink className="w-3 h-3 opacity-70" />
+              </a>
             </div>
 
             <h2 className="font-gaegu text-4xl sm:text-5xl md:text-6xl font-bold text-[#1D1B1B] leading-none mb-4">
@@ -72,14 +90,25 @@ export const ReadingClubSection: React.FC<ReadingClubSectionProps> = ({ onOpenCo
             {/* Actions */}
             <div className="flex flex-wrap items-center gap-4">
               <a
-                href="https://youtube.com"
+                href={BRAND_INFO.youtubeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-accent text-xl py-3 px-6 rounded-full flex items-center gap-2"
+                className="btn-accent text-xl py-3 px-6 rounded-full flex items-center gap-2.5 shadow-sm hover:scale-105 transition-transform"
               >
                 <Youtube className="w-5 h-5 text-white" />
-                <span>{t.watchCta[language]}</span>
+                <span>{language === 'es' ? 'Ver canal en YouTube' : 'Watch on YouTube'}</span>
                 <ExternalLink className="w-4 h-4 ml-0.5 opacity-80" />
+              </a>
+
+              <a
+                href={BRAND_INFO.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline text-xl py-3 px-6 rounded-full flex items-center gap-2.5 hover:bg-[#FAF8F5] transition-colors"
+              >
+                <Instagram className="w-5 h-5 text-[#E1306C]" />
+                <span>Instagram</span>
+                <ExternalLink className="w-4 h-4 ml-0.5 opacity-70" />
               </a>
 
               <button

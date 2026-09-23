@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { X, Send, CheckCircle2, TreePine } from 'lucide-react';
+import { X, Send, CheckCircle2, TreePine, Mail } from 'lucide-react';
 import { ContactFormData } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { TRANSLATIONS } from '../data/translations';
+import { BRAND_INFO } from '../data/content';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -273,6 +274,17 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                 </button>
                 <p className="font-sans text-[11px] text-[#777] text-center mt-2">
                   {language === 'es' ? '✦ Respetamos tu privacidad. Reyes responderá personalmente.' : '✦ We respect your family’s privacy. Reyes will reply directly.'}
+                </p>
+
+                <p className="font-sans text-xs text-[#666] text-center mt-3 pt-3 border-t border-[#E5E2DC]">
+                  {language === 'es' ? '¿Prefieres escribir por email?' : 'Prefer to write directly?'}{' '}
+                  <a
+                    href={`mailto:${BRAND_INFO.email}`}
+                    className="font-bold text-[#E86A33] hover:underline inline-flex items-center gap-1"
+                  >
+                    <Mail className="w-3.5 h-3.5" />
+                    <span>{BRAND_INFO.email}</span>
+                  </a>
                 </p>
               </div>
 

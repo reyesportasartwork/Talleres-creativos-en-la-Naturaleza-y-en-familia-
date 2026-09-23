@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, CheckCircle2, Send } from 'lucide-react';
+import { Mail, CheckCircle2, Send, Youtube, Instagram } from 'lucide-react';
 import { BRAND_INFO } from '../data/content';
 import { useLanguage } from '../context/LanguageContext';
 import { TRANSLATIONS } from '../data/translations';
@@ -12,7 +12,7 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({
   onOpenContact,
-  logo = '/WhatsApp Image 2026-04-20 at 14.07.37 (1).jpeg',
+  logo = '/the_creative_forest_logo.jpeg',
 }) => {
   const { language } = useLanguage();
   const t = TRANSLATIONS.footer;
@@ -192,8 +192,32 @@ export const Footer: React.FC<FooterProps> = ({
               {t.bioShort[language]}
             </p>
 
-            <div className="font-sans text-xs text-[#E86A33] font-semibold italic">
+            <div className="font-sans text-xs text-[#E86A33] font-semibold italic mb-4">
               {t.quote[language]}
+            </div>
+
+            {/* Social channels under brand */}
+            <div className="flex flex-wrap items-center gap-2">
+              <a
+                href={BRAND_INFO.youtubeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[#E5E2DC] hover:border-[#FF0000]/40 text-xs font-sans text-[#444] hover:text-[#CC0000] transition-all shadow-2xs group"
+                title="Canal de YouTube @ThecreativespanishforestTV"
+              >
+                <Youtube className="w-3.5 h-3.5 text-[#CC0000] group-hover:scale-110 transition-transform" />
+                <span className="font-semibold">YouTube</span>
+              </a>
+              <a
+                href={BRAND_INFO.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[#E5E2DC] hover:border-[#E1306C]/40 text-xs font-sans text-[#444] hover:text-[#C13584] transition-all shadow-2xs group"
+                title="Instagram @the.creative_forest"
+              >
+                <Instagram className="w-3.5 h-3.5 text-[#E1306C] group-hover:scale-110 transition-transform" />
+                <span className="font-semibold">Instagram</span>
+              </a>
             </div>
           </div>
 
@@ -246,9 +270,57 @@ export const Footer: React.FC<FooterProps> = ({
             <h4 className="font-sans text-xs font-bold uppercase tracking-wider text-[#1D1B1B] mb-3">
               {t.contact[language]}
             </h4>
-            <p className="font-sans text-sm text-[#555] leading-relaxed mb-4">
+            <p className="font-sans text-sm text-[#555] leading-relaxed mb-3">
               {t.contactDesc[language]}
             </p>
+
+            {/* Direct Email with click-to-email */}
+            <div className="mb-4 p-3 rounded-2xl bg-white border border-[#E5E2DC] shadow-2xs">
+              <span className="block text-[11px] font-sans font-bold text-[#888] uppercase tracking-wider mb-1">
+                {language === 'es' ? 'Email directo:' : 'Direct email:'}
+              </span>
+              <a
+                href={`mailto:${BRAND_INFO.email}`}
+                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-sans font-semibold text-[#E86A33] hover:underline break-all"
+                title={`Enviar correo a ${BRAND_INFO.email}`}
+              >
+                <Mail className="w-4 h-4 shrink-0 text-[#E86A33]" />
+                <span>{BRAND_INFO.email}</span>
+              </a>
+            </div>
+
+            {/* Social quick icons */}
+            <div className="flex items-center gap-2 mb-4">
+              <a
+                href={BRAND_INFO.youtubeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube channel"
+                className="w-9 h-9 rounded-full bg-white border border-[#E5E2DC] hover:border-[#FF0000] text-[#CC0000] flex items-center justify-center transition-colors shadow-2xs hover:bg-[#FF0000]/10"
+                title="YouTube: @ThecreativespanishforestTV"
+              >
+                <Youtube className="w-4.5 h-4.5" />
+              </a>
+              <a
+                href={BRAND_INFO.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram profile"
+                className="w-9 h-9 rounded-full bg-white border border-[#E5E2DC] hover:border-[#E1306C] text-[#C13584] flex items-center justify-center transition-colors shadow-2xs hover:bg-[#E1306C]/10"
+                title="Instagram: @the.creative_forest"
+              >
+                <Instagram className="w-4.5 h-4.5" />
+              </a>
+              <a
+                href={`mailto:${BRAND_INFO.email}`}
+                aria-label="Email Reyes Portas"
+                className="w-9 h-9 rounded-full bg-white border border-[#E5E2DC] hover:border-[#E86A33] text-[#E86A33] flex items-center justify-center transition-colors shadow-2xs hover:bg-[#E86A33]/10"
+                title={`Escribir a ${BRAND_INFO.email}`}
+              >
+                <Mail className="w-4.5 h-4.5" />
+              </a>
+            </div>
+
             <button
               type="button"
               id="footer-contact-reyes-btn"
